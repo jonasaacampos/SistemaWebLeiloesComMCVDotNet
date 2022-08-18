@@ -283,8 +283,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Leilao\Index.cshtml" />
     <Content Include="Views\Leilao\Leilao.cshtml" />
+    <Content Include="Views\Leilao\Index.cshtml" />
+    <Content Include="Views\Shared\_LeilaoNome.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

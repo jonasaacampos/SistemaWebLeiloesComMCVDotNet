@@ -9,12 +9,11 @@
     daí podemos criar a variável das duas maneiras a seguir
 
     var leilao = (MvcAuction.Models.Leilao)ViewData["Leilao"];
-    var leilao = ViewBag.Leilao;
-    
+    var leilao = ViewBag.Leilao;  
     *@
-    
-    
 }
+
+<a href="@Url.Action("Login", "Account")">Login</a>
 
 <div class="leilao">
     <h3>@leilao.NomeLeilao</h3>

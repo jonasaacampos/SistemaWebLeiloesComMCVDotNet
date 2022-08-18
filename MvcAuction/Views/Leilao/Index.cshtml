@@ -1,12 +1,18 @@
-﻿@{
+﻿@model IEnumerable<MvcAuction.Models.Leilao>
+
+@{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
 
-<div>Aqui é a página do leilão...</div>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="success-menssagem">@TempData["SuccessMessage"]</div>
+
+@foreach (var item in Model)
+{ @Html.Partial("_LeilaoNome", item)
 }
+
+

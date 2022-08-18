@@ -1,0 +1,9 @@
+﻿@model MvcAuction.Models.Leilao
+
+<div class="leilao-nome">
+    <h4 class="title">@Model.NomeLeilao</h4>
+    <p class="end-date">Aberto até @Model.TimeEnds.ToString("g")</p>
+    <p class="price"> Preço: @Model.PrecoAtual.GetValueOrDefault(Model.PrecoInicial).ToString("C")</p>
+
+</div>
+

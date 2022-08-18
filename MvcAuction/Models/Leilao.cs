@@ -8,6 +8,7 @@ namespace MvcAuction.Models
     public class Leilao
     {
         public long Id { get; set; }
+        public string NomeLeilao { get; set; }
         public string Descricao { get; set; }
         public string ImageUrl { get; set; }
 
@@ -16,8 +17,7 @@ namespace MvcAuction.Models
 
         public decimal PrecoInicial { get; set; }
         public decimal? PrecoAtual { get; set; }
-
-
+        
 
     }
 }

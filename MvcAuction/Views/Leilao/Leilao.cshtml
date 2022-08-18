@@ -1,0 +1,53 @@
+﻿@{
+    var leilao = new MvcAuction.Models.Leilao()
+    {
+        NomeLeilao = "Leilão Beneficente RFB",
+        Descricao = "Leilão com produtos apreendidos",
+        TimeStarts = DateTime.Now,
+        TimeEnds = DateTime.Now.AddDays(7),
+        PrecoInicial = 1.00m,
+        PrecoAtual = null
+    };
+}
+
+<div class="leilao">
+    <h3>@leilao.NomeLeilao</h3>
+
+    <div class="details">
+        <p>Início: @leilao.TimeStarts</p>
+        <p>Fim: @leilao.TimeEnds</p>
+        <p>Valor Lance inicial: R$ @leilao.PrecoInicial.ToString("C")</p>
+
+
+
+        @*
+    Comentários xD
+    *@
+
+        <p>
+            Preço atual: 
+            @if(leilao.PrecoAtual == null)
+            {
+                @: [Sem lances]
+            }
+            else
+            {
+                <span>@leilao.PrecoAtual.Value.ToString("C")</span>
+            }
+        </p>
+
+    </div>
+
+    @if(leilao.ImageUrl != null) 
+    {
+        <img src="@leilao.ImageUrl" alt="@leilao.NomeLeilao" />
+    }
+
+    <div class="description">
+        @leilao.Descricao
+    </div>
+
+
+
+
+</div>

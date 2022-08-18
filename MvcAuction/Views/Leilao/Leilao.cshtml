@@ -1,9 +1,19 @@
-﻿@{
+﻿@model MvcAuction.Models.Leilao
+@{
+    var leilao = Model;
     @*
+    se inserirmos o objeto como retorno da view da classe controller, é possível usar a anotação razor
+    --- 
+    ou podemos deixar o retorno vario e inserir o parametro
+    ViewData["Leilao"] = leilao; antes do retorno na classe controller
+    daí podemos criar a variável das duas maneiras a seguir
+
     var leilao = (MvcAuction.Models.Leilao)ViewData["Leilao"];
+    var leilao = ViewBag.Leilao;
+    
     *@
     
-    var leilao = ViewBag.Leilao;
+    
 }
 
 <div class="leilao">
@@ -12,11 +22,7 @@
     <div class="details">
         <p>Início: @leilao.TimeStarts</p>
         <p>Fim: @leilao.TimeEnds</p>
-        <p>Valor Lance inicial: @leilao.PrecoInicial.ToString("C")</p>
-        
-        @*
-    Comentários xD
-    *@
+        <p>Valor Lance inicial: @leilao.PrecoInicial.ToString("C")</p>    
 
         <p>
             Preço atual: 

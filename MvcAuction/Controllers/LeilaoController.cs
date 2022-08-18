@@ -16,6 +16,14 @@ namespace MvcAuction.Controllers
             return View();
         }
 
+        public ActionResult TempDataDemo()
+        {
+            TempData["SuccessMessage"] = "Yeah! Tudo certo por aqui...";
+
+            return RedirectToAction("Index");
+        }
+
+        
         public ActionResult Leilao()
         {
 
@@ -29,9 +37,7 @@ namespace MvcAuction.Controllers
                 PrecoAtual = null
             };
 
-            ViewData["Leilao"] = leilao;
-
-            return View();
+            return View(leilao);
         }
 
 

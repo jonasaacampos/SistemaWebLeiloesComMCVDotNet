@@ -286,6 +286,7 @@
     <Content Include="Views\Leilao\Leilao.cshtml" />
     <Content Include="Views\Leilao\Index.cshtml" />
     <Content Include="Views\Shared\_LeilaoNome.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithSideBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

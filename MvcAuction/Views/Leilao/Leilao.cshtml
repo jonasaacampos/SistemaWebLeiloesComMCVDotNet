@@ -1,13 +1,5 @@
 ﻿@{
-    var leilao = new MvcAuction.Models.Leilao()
-    {
-        NomeLeilao = "Leilão Beneficente RFB",
-        Descricao = "Leilão com produtos apreendidos",
-        TimeStarts = DateTime.Now,
-        TimeEnds = DateTime.Now.AddDays(7),
-        PrecoInicial = 1.00m,
-        PrecoAtual = null
-    };
+    var leilao = (MvcAuction.Models.Leilao)ViewData["Leilao"];
 }
 
 <div class="leilao">
@@ -16,10 +8,8 @@
     <div class="details">
         <p>Início: @leilao.TimeStarts</p>
         <p>Fim: @leilao.TimeEnds</p>
-        <p>Valor Lance inicial: R$ @leilao.PrecoInicial.ToString("C")</p>
-
-
-
+        <p>Valor Lance inicial: @leilao.PrecoInicial.ToString("C")</p>
+        
         @*
     Comentários xD
     *@

@@ -51,7 +51,7 @@ namespace MvcAuction.Controllers
         }
 
 
-        public ActionResult Leilao()
+        public ActionResult Leilao(long id)
         {
 
             var leilao = new MvcAuction.Models.Leilao()
@@ -68,6 +68,8 @@ namespace MvcAuction.Controllers
             return View(leilao);
         }
 
+
+        [HttpGet]
         public ActionResult NovoLeilao()
         {
             var categoriasLista =
@@ -75,6 +77,23 @@ namespace MvcAuction.Controllers
                     new[] { "Eletrônicos diversos", "Vestuário", "Celulares" });
             ViewBag.CategoriasLista = categoriasLista;
             return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult NovoLeilao([Bind(Exclude = "PrecoAtual")]Models.Leilao leilao)
+        {
+
+
+
+            if (ModelState.IsValid)
+            {
+                //save
+                return RedirectToAction("Index");
+            }
+
+            return NovoLeilao();
+
         }
 
 

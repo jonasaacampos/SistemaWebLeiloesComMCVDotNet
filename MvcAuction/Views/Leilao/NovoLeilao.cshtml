@@ -4,7 +4,7 @@
     ViewBag.Title = "NovoLeilao";
 }
 
-<h2>NovoLeilao</h2>
+<h2>Novo Leilao</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -71,15 +71,7 @@
             @Html.EditorFor(model => model.PrecoInicial)
             @Html.ValidationMessageFor(model => model.PrecoInicial)
         </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.PrecoAtual)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PrecoAtual)
-            @Html.ValidationMessageFor(model => model.PrecoAtual)
-        </div>
-
+     
         <p>
             <input type="submit" value="Create" />
         </p>
@@ -90,6 +82,8 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+@*
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+*@

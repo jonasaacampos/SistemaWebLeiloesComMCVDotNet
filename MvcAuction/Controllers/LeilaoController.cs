@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MvcAuction.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,34 +15,12 @@ namespace MvcAuction.Controllers
         //lista com todos os leiões ativos
         public ActionResult Index()
         {
+            var dataBase = new LeiloesDataContext();
+            var leiloes = dataBase.Leiloes.ToArray();
 
-            var leilao = new[] {
-                new Models.Leilao()
-
-            {
-                NomeLeilao = "Leilão Beneficente RFB #001",
-                Descricao = "Leilão com produtos apreendidos",
-                TimeStarts = DateTime.Now,
-                TimeEnds = DateTime.Now.AddDays(7),
-                PrecoInicial = 1.00m,
-                PrecoAtual = null,
-            },
-
-            new Models.Leilao()
-            {
-                NomeLeilao = "Leilão Beneficente RFB #002",
-                Descricao = "Leilão com produtos apreendidos",
-                TimeStarts = DateTime.Now,
-                TimeEnds = DateTime.Now.AddDays(7),
-                PrecoInicial = 1.00m,
-                PrecoAtual = 33m,
-            },
-          };
-
-
-            return View(leilao);
-
+            return View(leiloes);
         }
+
 
         public ActionResult TempDataDemo()
         {
@@ -53,17 +32,8 @@ namespace MvcAuction.Controllers
 
         public ActionResult Leilao(long id)
         {
-
-            var leilao = new MvcAuction.Models.Leilao()
-            {
-                NomeLeilao = "Leilão Beneficente RFB #001",
-                Descricao = "Leilão com produtos apreendidos",
-                TimeStarts = DateTime.Now,
-                TimeEnds = DateTime.Now.AddDays(7),
-                PrecoInicial = 1.00m,
-                PrecoAtual = null
-            };
-
+            var dataBase = new LeiloesDataContext();
+            var leilao = dataBase.Leiloes.Find(id);
 
             return View(leilao);
         }
@@ -88,7 +58,10 @@ namespace MvcAuction.Controllers
 
             if (ModelState.IsValid)
             {
-                //save
+                var dataBase = new LeiloesDataContext();
+                dataBase.Leiloes.Add(leilao);
+                dataBase.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 

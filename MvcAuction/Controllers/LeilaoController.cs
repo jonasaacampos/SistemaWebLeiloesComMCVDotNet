@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -36,6 +37,40 @@ namespace MvcAuction.Controllers
             var leilao = dataBase.Leiloes.Find(id);
 
             return View(leilao);
+        }
+
+        [HttpPost]
+        public ActionResult Lance(Lance lance)
+        {
+            var dataBase = new LeiloesDataContext();
+            var leilao = dataBase.Leiloes.Find(lance.LeilaoId);
+
+            if (leilao == null)
+            {
+                ModelState.AddModelError("LeilaoId", "Leilão não disponível ou inexistente");
+            }
+            else if (leilao.PrecoAtual >= lance.Valor)
+            {
+                ModelState.AddModelError("Valor", "Valor da oferta deve ser maior que valor atual");
+            }
+            else
+            {
+                lance.UsuarioNome = User.Identity.Name;
+                leilao.Lances.Add(lance);
+                leilao.PrecoAtual = lance.Valor;
+                dataBase.SaveChanges();
+            }
+
+            if (!Request.IsAjaxRequest())
+                return RedirectToAction("Leilao", new { id = lance.LeilaoId });
+
+            return Json(new {
+                PrecoAtual = lance.Valor.ToString("C"), 
+                LanceContador = leilao.LanceContador
+            });
+
+
+
         }
 
 

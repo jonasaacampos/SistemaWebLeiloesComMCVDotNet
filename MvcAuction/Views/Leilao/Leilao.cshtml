@@ -1,7 +1,7 @@
 ﻿@model MvcAuction.Models.Leilao
 @{
     var leilao = Model;
-    @*
+@*
     se inserirmos o objeto como retorno da view da classe controller, é possível usar a anotação razor
     --- 
     ou podemos deixar o retorno vario e inserir o parametro
@@ -19,25 +19,44 @@
     <h3>@leilao.NomeLeilao</h3>
 
     <div class="details">
-        <p>Início: @leilao.TimeStarts</p>
-        <p>Fim: @leilao.TimeEnds</p>
-        <p>Valor Lance inicial: @leilao.PrecoInicial.ToString("C")</p>    
+        <p>Início: @leilao.TimeStarts.ToString("g")</p>
+        <p>Fim: @leilao.TimeEnds.ToString("g")</p>
+        <p>Valor Lance inicial: @leilao.PrecoInicial.ToString("C")</p>
 
-        <p>
+        <p class="current-price">
             Preço atual: 
-            @if(leilao.PrecoAtual == null)
+            @if (leilao.PrecoAtual == null)
             {
                 @: [Sem lances]
             }
             else
             {
                 <span>@leilao.PrecoAtual.Value.ToString("C")</span>
+                <span>[@leilao.LanceContador lances]</span>    
+
             }
         </p>
 
+        <p>
+            @using (Html.BeginForm("Lance", "Leilao"))
+            {
+                var lanceMaisBaixo = leilao.PrecoAtual.GetValueOrDefault(leilao.PrecoInicial) + 1;
+            
+                <span>Lance: $@Html.TextBox("valor", lanceMaisBaixo)
+                      @Html.ValidationMessage("valor")
+                </span>
+            
+                @Html.Hidden("leilaoId", leilao.Id)
+                <input class="post-bid" type="submit" value="Lance" />
+            
+            }
+        </p>
+
+
+
     </div>
 
-    @if(leilao.ImageUrl != null) 
+    @if (leilao.ImageUrl != null)
     {
         <img src="@leilao.ImageUrl" alt="@leilao.NomeLeilao" />
     }
@@ -45,8 +64,45 @@
     <div class="description">
         @leilao.Descricao
     </div>
-
-
-
-
+    
 </div>
+
+<script id="current-price-template" type="application/html-template">
+<p class="current-price">
+    <span>Preço Atual: {{PrecoAtual}}</span>
+    <span>[{{LanceContador}} lances já foram enviados.]</span> 
+</p>
+</script>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('.post-bid').on("click", function () {
+
+                var form = $(this).parent("form");
+
+                $.ajax({
+                    type: "POST",
+                    url: form.attr('action'),
+                    data: form.serialize()
+                })
+                    .success(function (data) {
+                        alert("Lance enviado! Atualize a página para novo lance");
+                        var template = $('#current-price-template').clone().html();
+
+                        var html = template
+                                            .replace('{{PrecoAtual}}', data.CurrentPrice)
+                                            .replace('{{LanceContador}}', data.LanceContador);
+
+
+                        $('.current-price').replaceWith(html)
+                    })
+                    .error(function () {
+                        alert("Lance rejeitado(ducplicidade no envio ou erro na rede)");
+                    });
+
+                return false;
+            });
+        });
+    </script>
+    }

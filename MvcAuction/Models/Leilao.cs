@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -45,6 +46,19 @@ namespace MvcAuction.Models
         [DataType(DataType.Currency)]
         [Display(Name = "Valor último lance")]
         public decimal? PrecoAtual { get; set; }
+
+        public virtual Collection<Lance> Lances { get; private set; }
+
+        public int LanceContador
+        {
+            get { return Lances.Count; }
+        }
+
+        public Leilao()
+        {
+            Lances = new Collection<Lance>();
+        }
+
 
 
     }

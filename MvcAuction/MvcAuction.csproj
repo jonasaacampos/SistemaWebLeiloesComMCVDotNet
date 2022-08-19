@@ -169,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Lance.cs" />
     <Compile Include="Models\Leilao.cs" />
     <Compile Include="Models\LeiloesDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Shared\_LeilaoNome.cshtml" />
     <Content Include="Views\Shared\_LayoutWithSideBar.cshtml" />
     <Content Include="Views\Leilao\NovoLeilao.cshtml" />
+    <Content Include="Views\Leilao\_PrecoAtual.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

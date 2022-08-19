@@ -13,7 +13,10 @@ namespace MvcAuction.Controllers
         //
         // GET: /Leilao/
 
+
+
         //lista com todos os leiões ativos
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var dataBase = new LeiloesDataContext();
@@ -86,6 +89,7 @@ namespace MvcAuction.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult NovoLeilao([Bind(Exclude = "PrecoAtual")]Models.Leilao leilao)
         {
 

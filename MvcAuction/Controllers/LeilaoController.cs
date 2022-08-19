@@ -70,6 +70,10 @@ namespace MvcAuction.Controllers
 
         public ActionResult NovoLeilao()
         {
+            var categoriasLista =
+                new SelectList(
+                    new[] { "Eletrônicos diversos", "Vestuário", "Celulares" });
+            ViewBag.CategoriasLista = categoriasLista;
             return View();
         }
 

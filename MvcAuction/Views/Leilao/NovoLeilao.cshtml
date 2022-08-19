@@ -17,9 +17,7 @@
             @Html.LabelFor(model => model.CategoriaItens)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.CategoriaItens, 
-                new SelectList(
-                    new [] {"Eletrônicos", "Vestuários", "Celulares"}))
+            @Html.DropDownListFor(model => model.CategoriaItens, (SelectList)ViewBag.CategoriasLista)
 
             @Html.ValidationMessageFor(model => model.CategoriaItens)
         </div>

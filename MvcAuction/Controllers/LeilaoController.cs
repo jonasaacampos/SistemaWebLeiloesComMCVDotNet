@@ -43,6 +43,7 @@ namespace MvcAuction.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Lance(Lance lance)
         {
             var dataBase = new LeiloesDataContext();

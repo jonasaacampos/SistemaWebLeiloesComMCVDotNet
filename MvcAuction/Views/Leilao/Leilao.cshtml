@@ -47,6 +47,11 @@
                 </span>
             
                 @Html.Hidden("leilaoId", leilao.Id)
+
+                
+                @Html.AntiForgeryToken()
+                
+                
                 <input class="post-bid" type="submit" value="Lance" />
             
             }

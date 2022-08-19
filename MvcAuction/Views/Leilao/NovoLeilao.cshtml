@@ -1,0 +1,97 @@
+﻿@model MvcAuction.Models.Leilao
+
+@{
+    ViewBag.Title = "NovoLeilao";
+}
+
+<h2>NovoLeilao</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Leilao</legend>
+
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoriaItens)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CategoriaItens, 
+                new SelectList(
+                    new [] {"Eletrônicos", "Vestuários", "Celulares"}))
+
+            @Html.ValidationMessageFor(model => model.CategoriaItens)
+        </div>
+        
+        
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NomeLeilao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NomeLeilao)
+            @Html.ValidationMessageFor(model => model.NomeLeilao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Descricao)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Descricao)
+            @Html.ValidationMessageFor(model => model.Descricao)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageUrl)
+            @Html.ValidationMessageFor(model => model.ImageUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeStarts)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeStarts)
+            @Html.ValidationMessageFor(model => model.TimeStarts)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeEnds)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeEnds)
+            @Html.ValidationMessageFor(model => model.TimeEnds)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrecoInicial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PrecoInicial)
+            @Html.ValidationMessageFor(model => model.PrecoInicial)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PrecoAtual)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PrecoAtual)
+            @Html.ValidationMessageFor(model => model.PrecoAtual)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

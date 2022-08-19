@@ -68,6 +68,11 @@ namespace MvcAuction.Controllers
             return View(leilao);
         }
 
+        public ActionResult NovoLeilao()
+        {
+            return View();
+        }
+
 
     }
 }

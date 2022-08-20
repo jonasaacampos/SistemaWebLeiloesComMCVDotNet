@@ -17,6 +17,7 @@ namespace MvcAuction.Controllers
 
         //lista com todos os leiões ativos
         [AllowAnonymous]
+        [OutputCache(Duration = 1)]
         public ActionResult Index()
         {
             var dataBase = new LeiloesDataContext();
@@ -34,6 +35,7 @@ namespace MvcAuction.Controllers
         }
 
 
+        
         public ActionResult Leilao(long id)
         {
             var dataBase = new LeiloesDataContext();
@@ -44,6 +46,7 @@ namespace MvcAuction.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [OutputCache(Duration = 5)]
         public ActionResult Lance(Lance lance)
         {
             var dataBase = new LeiloesDataContext();

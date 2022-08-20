@@ -9,12 +9,16 @@ namespace MvcAuction.Controllers
     [AllowAnonymous]
     public class HomeController : Controller
     {
+
+        [OutputCache(Duration=3)] //TESTE - Alterar tempo para 3600 em produção
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "Última atualização da página: " + DateTime.Now;
 
             return View();
         }
+
+
 
         public ActionResult About()
         {

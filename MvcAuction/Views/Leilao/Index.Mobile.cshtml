@@ -1,0 +1,23 @@
+﻿@model IEnumerable<MvcAuction.Models.Leilao>
+
+@{  ViewBag.Title = "Leilões : Versão Mobile";
+    DisplayModeProvider.Instance.RequireConsistentDisplayMode = true;
+}
+
+
+@section Scripts{
+    <!-- ...... -->
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Criar Mercadoria", "NovoLeilao")
+</p>
+
+
+@foreach (var item in Model)
+{ @Html.Partial("_LeilaoNome", item)
+}
+
+

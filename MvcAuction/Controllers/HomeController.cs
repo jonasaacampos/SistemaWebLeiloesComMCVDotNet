@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
+
 
 namespace MvcAuction.Controllers
 {
@@ -33,6 +35,17 @@ namespace MvcAuction.Controllers
 
             return View();
         }
+
+        public ActionResult SwitchView(string returnUrl, bool mobile = false)
+        {
+            HttpContext.ClearOverriddenBrowser();
+            HttpContext.SetOverriddenBrowser(
+                mobile ? BrowserOverride.Mobile : BrowserOverride.Desktop);
+
+            return Redirect(returnUrl);
+        }
+
+
 
     }
 }

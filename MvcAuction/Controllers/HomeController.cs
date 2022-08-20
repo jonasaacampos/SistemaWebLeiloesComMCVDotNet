@@ -33,5 +33,6 @@ namespace MvcAuction.Controllers
 
             return View();
         }
+
     }
 }
